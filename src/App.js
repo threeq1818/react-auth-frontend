@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import stroe from './store';
+import store from './store';
 
 import Navbar from './components/Navbar';
 import Register from './components/Register';
