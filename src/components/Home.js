@@ -1,6 +1,12 @@
 // Home.js
 
 import React, { Component } from 'react';
+
+import store from '../store';
+import jwt_decode from 'jwt-decode';
+import setAuthToken from '../setAuthToken';
+import { setCurrentUser, logoutUser } from '../actions/authentication';
+
 import Table from './Table'
 import Form from './Form'
 
@@ -9,6 +15,7 @@ export default class Home extends Component {
         characters: [
         ],
     }
+
 
     removeCharacter = index => {
         const { characters } = this.state
@@ -25,11 +32,12 @@ export default class Home extends Component {
     }
 
     render() {
+        const { characters } = this.state
         return (
             <div className="container">
                 <Table characterData={characters} removeCharacter={this.removeCharacter} />
-                <Form handleSubmit={this.insertChracter} />
+                <Form handleSubmit={this.insertCharacter} />
             </div>
-        )
+        );
     }
 }
