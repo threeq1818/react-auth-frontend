@@ -10,7 +10,7 @@ import classnames from 'classnames';
 import store from '../store';
 import jwt_decode from 'jwt-decode';
 import setAuthToken from '../setAuthToken';
-import { createCharacter, readCharacterAll, readCharacter } from '../actions/character';
+import { createCharacter, readCharacterAll, readCharacter, deleteCharacter } from '../actions/character';
 
 import Table from './Table'
 import Form from './Form'
@@ -27,15 +27,16 @@ class Home extends Component {
         }
     }
 
-    onClickDelete = index => {
+    onClickDelete = id => {
+        this.props.deleteCharacter(id);
     }
 
     onClickInsert = character => {
+        this.props.createCharacter(character);
     }
 
     render() {
         const characters = this.props.characters.data;
-        debugger
         return (
             <div className="container">
                 <Table characterData={characters} removeCharacter={this.onClickDelete} />
@@ -60,4 +61,4 @@ const mapStateToProps = state => ({
 //     registerUser: registerUser
 // }
 
-export default connect(mapStateToProps, { createCharacter, readCharacterAll, readCharacter })(withRouter(Home))
+export default connect(mapStateToProps, { createCharacter, readCharacterAll, readCharacter, deleteCharacter })(withRouter(Home))
