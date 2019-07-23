@@ -4,13 +4,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
-import { registerUser } from '../actions/authentication';
 import classnames from 'classnames';
+import { registerUser } from '../actions/authentication';
 
 class Register extends Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             name: '',
             email: '',
@@ -52,6 +52,7 @@ class Register extends Component {
 
     componentDidMount() {
         if (this.props.auth.isAuthenticated) {
+            console.log(this.props.auth.user);
             this.props.history.push('/');
         }
     }

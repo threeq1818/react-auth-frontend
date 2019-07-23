@@ -32,7 +32,7 @@ const isAuthenticate = () => {
     setAuthToken(localStorage.jwtToken);
     const decoded = jwt_decode(localStorage.jwtToken);
     store.dispatch(setCurrentUser(decoded));
-
+    console.log(decoded);
     const currentTime = Date.now() / 1000;
     if (decoded.exp < currentTime) {
       store.dispatch(logoutUser());

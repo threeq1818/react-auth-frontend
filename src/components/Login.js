@@ -8,8 +8,8 @@ import classnames from 'classnames';
 
 class Login extends Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             email: '',
             password: '',
@@ -36,12 +36,15 @@ class Login extends Component {
 
     componentDidMount() {
         if (this.props.auth.isAuthenticated) {
+            // debugger
+            console.log(this.props.auth.user);
             this.props.history.push('/');
         }
     }
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.auth.isAuthenticated) {
+            // debugger
             this.props.history.push('/')
         }
         if (nextProps.errors) {
@@ -96,8 +99,7 @@ class Login extends Component {
 
 Login.propTypes = {
     loginUser: PropTypes.func.isRequired,
-    auth: PropTypes.object.isRequired,
-    errors: PropTypes.object.isRequired
+    auth: PropTypes.object.isRequired
 }
 
 const mapStateToProps = (state) => ({
